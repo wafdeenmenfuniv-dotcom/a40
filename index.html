@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>اختبار الفصل السادس | تصميم العروض التعليمية باستخدام PowerPoint</title>
+<style>
+:root{--bg:#f3f6fb;--card:#fff;--ink:#172033;--muted:#64748b;--primary:#6d28d9;--primary2:#5b21b6;--good:#15803d;--bad:#b91c1c;--line:#dbe3ef;--soft:#f1eafe}
+*{box-sizing:border-box}
+body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(145deg,#f3e8ff,#f8fafc 50%,#eff6ff);color:var(--ink);line-height:1.8}
+.wrap{max-width:940px;margin:28px auto;padding:0 16px 36px}
+.hero{background:linear-gradient(120deg,#3b0764,#6d28d9 65%,#2563eb);color:#fff;padding:28px;border-radius:24px;box-shadow:0 16px 40px #581c8722}
+.hero .tag{display:inline-block;background:#ffffff20;border:1px solid #ffffff45;border-radius:99px;padding:4px 12px;font-size:13px}
+h1{font-size:clamp(23px,4vw,34px);line-height:1.45;margin:12px 0 8px}
+.hero p{margin:0;color:#ede9fe}
+.meta{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+label{display:block;font-weight:700;margin-bottom:5px}
+input[type=text]{width:100%;padding:13px 14px;border:1px solid #cbd5e1;border-radius:12px;font:inherit;background:#fff;color:#111827}
+.note{font-size:13px;color:#ede9fe;margin-top:12px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;margin-top:18px;box-shadow:0 8px 24px #0f172a08}
+.topline{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.pill{background:var(--soft);color:#6d28d9;padding:5px 11px;border-radius:99px;font-size:13px;font-weight:700}
+.progress{height:8px;background:#e2e8f0;border-radius:99px;overflow:hidden;margin:16px 0 4px}
+.bar{height:100%;width:0;background:linear-gradient(90deg,#7c3aed,#0ea5e9);transition:width .25s}
+.qnum{color:var(--muted);font-size:14px}
+.question{font-size:19px;font-weight:700;margin:8px 0 16px}
+.options{display:grid;gap:10px}
+.option{display:flex;align-items:flex-start;gap:10px;border:1px solid var(--line);border-radius:13px;padding:12px 14px;cursor:pointer;transition:.15s;background:#fff}
+.option:hover{border-color:#c4b5fd;background:#fcfaff}
+.option input{margin-top:7px;accent-color:var(--primary);flex-shrink:0}
+.option.correct{border-color:#86efac;background:#f0fdf4}
+.option.wrong{border-color:#fca5a5;background:#fef2f2}
+.feedback{display:none;margin-top:14px;padding:12px 14px;border-radius:12px;font-size:14px}
+.feedback.show{display:block}
+.feedback.good{background:#f0fdf4;color:#166534}
+.feedback.bad{background:#fef2f2;color:#991b1b}
+.controls{display:flex;justify-content:space-between;gap:10px;margin-top:20px;flex-wrap:wrap}
+button{font:inherit;font-weight:700;border:0;border-radius:12px;padding:11px 18px;cursor:pointer}
+.btn-primary{background:var(--primary);color:#fff}.btn-primary:hover{background:var(--primary2)}
+.btn-light{background:#eaf0f8;color:#1e293b}
+.btn-light:disabled,.btn-primary:disabled{opacity:.45;cursor:not-allowed}
+.result{display:none;text-align:center}
+.score{font-size:46px;font-weight:800;color:#6d28d9;line-height:1.3;margin:12px 0}
+.result p{color:var(--muted)}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}
+.stat{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:14px}
+.stat strong{display:block;font-size:22px}
+.review{margin-top:18px;text-align:right}
+.review-item{border-bottom:1px solid var(--line);padding:12px 0}
+.review-item:last-child{border-bottom:0}
+.small{font-size:13px;color:var(--muted)}
+footer{text-align:center;color:var(--muted);font-size:12px;margin-top:18px}
+@media(max-width:600px){.meta{grid-template-columns:1fr}.panel{padding:16px}.hero{padding:22px}.summary{grid-template-columns:1fr}}
+@media print{body{background:#fff}.hero,.panel{box-shadow:none}.controls,.note,.tag{display:none!important}.wrap{margin:0;max-width:none}.panel{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <span class="tag">اختبار تفاعلي · الفصل السادس</span>
+    <h1>تصميم العروض التعليمية باستخدام Microsoft PowerPoint</h1>
+    <p>التصميم البصري والوسائط المتعددة والتفاعل والتصدير</p>
+    <div class="meta">
+      <div><label for="studentName">اسم الطالب/ة</label><input id="studentName" type="text" placeholder="اكتب الاسم هنا" autocomplete="name"></div>
+      <div><label for="studentId">الرقم الأكاديمي</label><input id="studentId" type="text" placeholder="اكتب الرقم الأكاديمي"></div>
+    </div>
+    <div class="note">أجب عن الأسئلة العشرة. تظهر التغذية الراجعة بعد اختيار الإجابة، وتُحسب النتيجة تلقائيًا عند إنهاء الاختبار.</div>
+  </header>
+
+  <section class="panel" id="quizPanel">
+    <div class="topline"><span class="pill" id="sectionLabel">السؤال 1 من 10</span><span class="qnum" id="answeredLabel">تمت الإجابة عن 0 من 10</span></div>
+    <div class="progress"><div class="bar" id="progressBar"></div></div>
+    <div id="questionArea"></div>
+    <div class="controls">
+      <button class="btn-light" id="prevBtn" type="button">السابق</button>
+      <button class="btn-primary" id="nextBtn" type="button">التالي</button>
+      <button class="btn-primary" id="finishBtn" type="button" style="display:none">إنهاء الاختبار</button>
+    </div>
+  </section>
+
+  <section class="panel result" id="resultPanel">
+    <span class="pill">اكتمل الاختبار</span>
+    <h2>نتيجة الاختبار</h2>
+    <div id="resultName"></div>
+    <div class="score" id="scoreText">0 / 10</div>
+    <div id="percentText"></div>
+    <div class="summary">
+      <div class="stat"><strong id="correctCount">0</strong><span>إجابات صحيحة</span></div>
+      <div class="stat"><strong id="wrongCount">0</strong><span>إجابات تحتاج مراجعة</span></div>
+      <div class="stat"><strong id="gradeText">—</strong><span>التقدير الوصفي</span></div>
+    </div>
+    <p id="resultAdvice"></p>
+    <div class="controls">
+      <button class="btn-primary" type="button" onclick="window.print()">طباعة النتيجة</button>
+      <button class="btn-light" type="button" id="reviewBtn">مراجعة الإجابات</button>
+      <button class="btn-light" type="button" id="restartBtn">إعادة الاختبار</button>
+    </div>
+    <div class="review" id="reviewArea"></div>
+  </section>
+  <footer>هذا الاختبار يعمل داخل المتصفح ولا يرسل اسم الطالب أو إجاباته إلى أي خادم تلقائيًا.</footer>
+</div>
+<script>
+const questions = [
+ {q:"ما الخطوة الأفضل قبل البدء في تصميم شرائح العرض التعليمي؟",opts:["اختيار أكبر عدد ممكن من المؤثرات","إدراج فيديو قبل تحديد الموضوع","صياغة هدف واضح ثم ترتيب المحتوى إلى تمهيد وشرح وتطبيق وختام","تصميم كل شريحة بشكل مختلف تمامًا"],a:2,why:"يبدأ العرض بهدف تعليمي واضح، ثم ينظم المحتوى في تسلسل منطقي يشمل التمهيد والشرح والتطبيق والختام."},
+ {q:"أي ممارسة تحقق مبدأ التباين البصري؟",opts:["جعل لون النص قريبًا جدًا من لون الخلفية","تمييز النص المهم عن الخلفية بدرجة واضحة","استخدام خطوط وألوان كثيرة بلا نظام","ملء الشريحة بالنصوص"],a:1,why:"التباين يجعل النص والعناصر المهمة واضحة ومتميزة عن الخلفية."},
+ {q:"ما الفائدة الأساسية من المساحة البيضاء في الشريحة؟",opts:["تقليل الازدحام وإبراز العنصر الأساسي","إجبار المصمم على إضافة صور أكثر","إخفاء العنوان","زيادة عدد الشرائح دون سبب"],a:0,why:"المساحة البيضاء تساعد على تخفيف الازدحام البصري وإبراز الفكرة المركزية."},
+ {q:"عند عرض بيانات تعليمية في مخطط، ما الممارسة الأفضل؟",opts:["ترك المحاور بلا أسماء لتوفير المساحة","استخدام تأثير ثلاثي الأبعاد دائمًا","اختيار مخطط عشوائي دون النظر إلى البيانات","اختيار شكل مناسب وتسمية المحاور والوحدات وكتابة عنوان يوضح الرسالة"],a:3,why:"ينبغي أن يناسب المخطط البيانات، وأن تكون المحاور والوحدات واضحة، وأن يصف العنوان الرسالة التي توضحها البيانات."},
+ {q:"متى يكون استخدام نموذج ثلاثي الأبعاد ذا قيمة تعليمية خاصة؟",opts:["عندما يكون الهدف زيادة حجم الملف","عندما يحتاج المتعلم إلى رؤية جسم أو تدويره وفحص أجزائه","في كل شريحة دون استثناء","بدلًا من كل نص أو صورة"],a:1,why:"تظهر فائدة النماذج ثلاثية الأبعاد عندما تساعد المتعلم على فحص جسم أو تدويره ورؤية أجزائه."},
+ {q:"ما الممارسة الأنسب عند إدراج فيديو في العرض؟",opts:["اختيار أي فيديو لتغيير الجو","عدم فحص الصوت لأن الفيديو سيعمل دائمًا","اختيار فيديو يخدم هدفًا محددًا، وفحص مدته وصوته وحقوق استخدامه وتشغيله بعد النقل","ربط الفيديو بمسار محلي دون اختباره على جهاز آخر"],a:2,why:"يجب أن يخدم الفيديو هدفًا تعليميًا، وأن يُختبر تشغيله ووضوح صوته ومدته وحقوق استخدامه، مع مراعاة توفره على جهاز العرض."},
+ {q:"ما الفرق الأساسي بين الحركة Animation والانتقال Transition؟",opts:["الحركة تؤثر في ظهور عنصر داخل الشريحة، والانتقال ينقل العرض من شريحة إلى أخرى","كلاهما يعني إدراج فيديو","الانتقال يغير محتوى النص تلقائيًا","لا يوجد أي فرق بينهما"],a:0,why:"تستخدم الحركات لإظهار العناصر أو توجيه الانتباه داخل الشريحة، بينما تستخدم الانتقالات عند الانتقال من شريحة لأخرى."},
+ {q:"عند إنشاء عرض تفاعلي باستخدام أزرار الإجراءات والروابط، ما الذي ينبغي فعله؟",opts:["ترك المستخدم دون طريقة للعودة","اختبار الروابط في وضع عرض الشرائح وتوفير مسار واضح للعودة إلى القائمة","استخدام أسماء أزرار غير مفهومة","اختبار الأزرار في وضع التحرير فقط"],a:1,why:"ينبغي التخطيط لمسارات التنقل واختبار الروابط في عرض الشرائح، مع توفير وسيلة واضحة للعودة إلى البداية أو القائمة."},
+ {q:"ما الذي ينبغي التحقق منه قبل تصدير العرض إلى PDF أو فيديو؟",opts:["أن تكون كل الشرائح بنفس عدد الكلمات","أن تكون كل الحركات مختلفة","أن يكون حجم الملف أكبر ما يمكن","تشغيل العرض كاملًا وفحص الوسائط والروابط والتوقيتات وتوافق الملف النهائي"],a:3,why:"تتضمن قائمة الفحص تشغيل العرض من البداية للنهاية وفحص الوسائط والروابط والتوقيتات ثم تجربة الملف النهائي على بيئة التشغيل المستهدفة."},
+ {q:"أي خيار يعكس مراعاة إتاحة المحتوى التعليمي؟",opts:["الاعتماد على الصوت وحده دون أي بديل","استخدام ألوان متقاربة جدًا للنص والخلفية","توفير بدائل مناسبة للمحتوى المرئي والسمعي والتحقق من وضوح العرض","إخفاء العناوين لتقليل النص"],a:2,why:"تتضمن قائمة فحص العرض التعليمي التأكد من وجود بدائل مناسبة للمحتوى المرئي والسمعي، إلى جانب الوضوح والتباين."}
+];
+let current=0;
+const answers=Array(questions.length).fill(null);
+const locked=Array(questions.length).fill(false);
+const $=id=>document.getElementById(id);
+function render(){
+ const q=questions[current];
+ $("sectionLabel").textContent=`السؤال ${current+1} من ${questions.length}`;
+ $("answeredLabel").textContent=`تمت الإجابة عن ${answers.filter(x=>x!==null).length} من ${questions.length}`;
+ $("progressBar").style.width=((current+1)/questions.length*100)+"%";
+ $("questionArea").innerHTML="";
+ const title=document.createElement("div");title.className="question";title.textContent=q.q;$("questionArea").appendChild(title);
+ const options=document.createElement("div");options.className="options";
+ q.opts.forEach((opt,i)=>{
+  const label=document.createElement("label");label.className="option";
+  if(locked[current]&&i===q.a)label.classList.add("correct");
+  if(locked[current]&&answers[current]===i&&i!==q.a)label.classList.add("wrong");
+  const radio=document.createElement("input");radio.type="radio";radio.name="answer";radio.value=i;radio.checked=answers[current]===i;radio.disabled=locked[current];
+  radio.addEventListener("change",()=>{answers[current]=i;locked[current]=true;render();});
+  const span=document.createElement("span");span.textContent=opt;
+  label.append(radio,span);options.appendChild(label);
+ });$("questionArea").appendChild(options);
+ if(locked[current]){
+  const fb=document.createElement("div");fb.className="feedback show "+(answers[current]===q.a?"good":"bad");
+  fb.textContent=(answers[current]===q.a?"إجابة صحيحة. ":"إجابة غير صحيحة. ")+q.why;$("questionArea").appendChild(fb);
+ }
+ $("prevBtn").disabled=current===0;
+ $("nextBtn").style.display=current===questions.length-1?"none":"inline-block";
+ $("finishBtn").style.display=current===questions.length-1?"inline-block":"none";
+}
+function finish(){
+ const missing=answers.filter(x=>x===null).length;
+ if(missing){alert(`لم تجب عن ${missing} سؤال/أسئلة. انتقل إليها وأجب قبل إنهاء الاختبار.`);return;}
+ const correct=answers.reduce((n,a,i)=>n+(a===questions[i].a?1:0),0);
+ $("quizPanel").style.display="none";$("resultPanel").style.display="block";
+ const name=$("studentName").value.trim();const sid=$("studentId").value.trim();
+ $("resultName").textContent=(name?`الطالب/ة: ${name}`:"")+((name&&sid)?" — ":"")+(sid?`الرقم الأكاديمي: ${sid}`:"");
+ $("scoreText").textContent=`${correct} / ${questions.length}`;
+ $("percentText").textContent=`النسبة المئوية: ${Math.round(correct/questions.length*100)}%`;
+ $("correctCount").textContent=correct;$("wrongCount").textContent=questions.length-correct;
+ $("gradeText").textContent=correct>=9?"ممتاز":correct>=7?"جيد جدًا":correct>=5?"جيد":"يحتاج إلى مراجعة";
+ $("resultAdvice").textContent=correct>=8?"أداء جيد جدًا. راجع تفسيرات الإجابات لتثبيت المفاهيم.":"راجع التغذية الراجعة، خاصة التخطيط والتصميم البصري والوسائط والتفاعل والتصدير، ثم أعد المحاولة.";
+ $("reviewArea").innerHTML="<h3>مراجعة الإجابات</h3>"+questions.map((q,i)=>`<div class="review-item"><strong>${i+1}. ${q.q}</strong><div>إجابتك: ${q.opts[answers[i]]}</div><div>الإجابة الصحيحة: ${q.opts[q.a]}</div><div class="small">${q.why}</div></div>`).join("");
+}
+$("prevBtn").addEventListener("click",()=>{if(current>0){current--;render();}});
+$("nextBtn").addEventListener("click",()=>{if(current<questions.length-1){current++;render();}});
+$("finishBtn").addEventListener("click",finish);
+$("reviewBtn").addEventListener("click",()=>{$("resultPanel").style.display="none";$("quizPanel").style.display="block";current=0;render();});
+$("restartBtn").addEventListener("click",()=>{if(confirm("هل تريد إعادة الاختبار من البداية؟")){current=0;answers.fill(null);locked.fill(false);$("resultPanel").style.display="none";$("quizPanel").style.display="block";render();}});
+render();
+</script>
+</body>
+</html>
